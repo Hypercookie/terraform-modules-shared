@@ -18,23 +18,32 @@ jobs:
         with:
           terraform_version:  1.12.2 # pick the version you want
 
-      - name: Find and validate modules
-        shell: bash
+      - name: Validate modules
         run: |
-          set -euo pipefail
-
-          for dir in modules/*/; do
-            echo "🔍 Checking module: $dir"
-            cd "$dir"
-
-            # Check formatting
-            terraform fmt -check -recursive
-
-            # Initialize (skip backend to avoid real infra setup)
-            terraform init -backend=false -input=false -no-color
-
-            # Validate syntax
-            terraform validate -no-color
-
-            cd - > /dev/null
-          done
+            set -euo pipefail
+            
+            for dir in modules/*/; do
+              echo "🔍 Checking module: $dir"
+              cd "$dir"
+            
+              echo "→ terraform fmt -check"
+              if ! terraform fmt -check -recursive; then
+                echo "❌ Formatting issues in $dir"
+                exit 1
+              fi
+            
+              echo "→ terraform init"
+              if ! terraform init -backend=false -input=false -no-color; then
+                echo "❌ Init failed in $dir"
+                exit 1
+              fi
+            
+              echo "→ terraform validate"
+              if ! terraform validate -no-color; then
+                echo "❌ Validation failed in $dir"
+                exit 1
+              fi
+            
+              cd - > /dev/null
+              echo "✅ $dir passed validation"
+            done
