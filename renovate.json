@@ -4,6 +4,7 @@
   "automerge": true,
   "automergeType": "pr",
   "automergeStrategy": "merge-commit",
+  "requireStatusChecks": true,
   "major": {
     "automerge": true
   },
