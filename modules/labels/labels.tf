@@ -11,7 +11,7 @@ locals {
 
 module "base" {
   source    = "cloudposse/label/null"
-  version = "v0.25.0"
+  version   = "v0.25.0"
   namespace = var.namespace
 }
 
@@ -19,7 +19,7 @@ module "base-stage" {
   source   = "cloudposse/label/null"
   for_each = { for s in var.stages : s => s }
   context  = module.base.context
-  version = "v0.25.0"
+  version  = "v0.25.0"
   stage    = each.value
 }
 
@@ -27,6 +27,6 @@ module "base-resources" {
   source   = "cloudposse/label/null"
   for_each = local.pairs_map
   context  = module.base-stage[each.value.stage].context
-  version = "v0.25.0"
+  version  = "v0.25.0"
   name     = each.value.name
 }
