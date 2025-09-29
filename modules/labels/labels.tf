@@ -11,7 +11,7 @@ locals {
 
 module "base" {
   source    = "cloudposse/label/null"
-  version   = "v0.25.0"
+  version   = "v0.24.0"
   namespace = var.namespace
 }
 
