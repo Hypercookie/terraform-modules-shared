@@ -1,0 +1,13 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/github",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "angular"
+      }
+    ],
+    "@semantic-release/release-notes-generator"
+  ]
+}
