@@ -1,0 +1,40 @@
+name: Terraform Modules CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  validate-modules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.5 # pick the version you want
+
+      - name: Find and validate modules
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for dir in modules/*/; do
+            echo "🔍 Checking module: $dir"
+            cd "$dir"
+
+            # Check formatting
+            terraform fmt -check -recursive
+
+            # Initialize (skip backend to avoid real infra setup)
+            terraform init -backend=false -input=false -no-color
+
+            # Validate syntax
+            terraform validate -no-color
+
+            cd - > /dev/null
+          done
