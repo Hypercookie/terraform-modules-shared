@@ -16,7 +16,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.5 # pick the version you want
+          terraform_version:  1.12.2 # pick the version you want
 
       - name: Find and validate modules
         shell: bash
