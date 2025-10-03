@@ -1,23 +1,23 @@
 module "firewall-https" {
-  source  = "cloudposse/label/null"
-  version = "v0.25.0"
-  context = var.firewall_context
+  source     = "cloudposse/label/null"
+  version    = "v0.25.0"
+  context    = var.firewall_context
   attributes = ["https"]
-  count   = var.create_https_firewall ? 1 : 0
+  count      = var.create_https_firewall ? 1 : 0
 }
 module "firewall-ssh" {
-  source  = "cloudposse/label/null"
-  version = "v0.25.0"
-  context = var.firewall_context
+  source     = "cloudposse/label/null"
+  version    = "v0.25.0"
+  context    = var.firewall_context
   attributes = ["ssh"]
-  count   = var.create_ssh_firewall ? 1 : 0
+  count      = var.create_ssh_firewall ? 1 : 0
 }
 module "firewall-ping" {
-  source  = "cloudposse/label/null"
-  version = "v0.25.0"
-  context = var.firewall_context
+  source     = "cloudposse/label/null"
+  version    = "v0.25.0"
+  context    = var.firewall_context
   attributes = ["ping"]
-  count   = var.create_ping_firewall ? 1 : 0
+  count      = var.create_ping_firewall ? 1 : 0
 }
 
 resource "hcloud_firewall" "https" {

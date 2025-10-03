@@ -10,22 +10,22 @@ variable "subnets" {
 }
 
 variable "create_https_firewall" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "create_ssh_firewall" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "create_ping_firewall" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "use_endless_ssh" {
-  type = bool
+  type    = bool
   default = false
 }
 
