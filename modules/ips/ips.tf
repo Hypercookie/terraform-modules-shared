@@ -22,5 +22,6 @@ resource "hcloud_primary_ip" "ipv6" {
   count         = var.generate_ipv6 ? 1 : 0
   auto_delete   = false
   type          = "ipv6"
+  datacenter    = var.datacenter
   name          = module.ipv6.id
 }
