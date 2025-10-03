@@ -1,8 +1,3 @@
-variable "hcloud_token" {
-  sensitive = true
-  type      = string
-}
-
 variable "subnets" {
   type = list(object({
     ip_range = string
@@ -33,4 +28,8 @@ variable "firewall_context" {
   type = object({
     context = any
   })
+}
+variable "hcloud_provider" {
+  type = any
+  default = null
 }

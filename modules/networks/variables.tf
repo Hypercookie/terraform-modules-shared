@@ -1,8 +1,3 @@
-variable "hcloud_token" {
-  sensitive = true
-  type = string
-}
-
 variable "network_context" {
   type = object({
     context = any
@@ -25,4 +20,8 @@ variable "subnet_ip_range" {
 variable "subnet_network_zone" {
   type = string
   default = "eu-central"
+}
+variable "hcloud_provider" {
+  type = any
+  default = null
 }
