@@ -12,6 +12,6 @@ variable "datacenter" {
 }
 variable "ip_context" {
   type = object({
-    context = object({})
+    context = any
   })
 }
