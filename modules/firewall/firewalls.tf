@@ -1,19 +1,19 @@
 module "firewall-https" {
   source     = "cloudposse/label/null"
   version    = "v0.25.0"
-  context    = var.firewall_context
+  context    = var.firewall_context.context
   attributes = ["https"]
 }
 module "firewall-ssh" {
   source     = "cloudposse/label/null"
   version    = "v0.25.0"
-  context    = var.firewall_context
+  context    = var.firewall_context.context
   attributes = ["ssh"]
 }
 module "firewall-ping" {
   source     = "cloudposse/label/null"
   version    = "v0.25.0"
-  context    = var.firewall_context
+  context    = var.firewall_context.context
   attributes = ["ping"]
 }
 
