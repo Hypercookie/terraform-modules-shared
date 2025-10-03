@@ -6,8 +6,3 @@ terraform {
     }
   }
 }
-
-provider "hcloud" {
-  alias = "caller"
-  token = var.hcloud_provider.token
-}
