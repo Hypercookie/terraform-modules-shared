@@ -31,6 +31,6 @@ variable "use_endless_ssh" {
 
 variable "firewall_context" {
   type = object({
-    context = object({})
+    context = any
   })
 }
