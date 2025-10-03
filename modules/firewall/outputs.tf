@@ -6,11 +6,11 @@ output "local_subnets" {
 }
 
 output "https_firewall_id" {
-  value = hcloud_firewall.https.id
+  value = try(hcloud_firewall.https[0].id, null)
 }
 output "ssh_firewall_id" {
-  value = hcloud_firewall.ssh.id
+  value = try(hcloud_firewall.ssh[0].id, null)
 }
 output "ping_firewall_id" {
-  value = hcloud_firewall.ping.id
+  value = try(hcloud_firewall.ping[0].id, null)
 }
