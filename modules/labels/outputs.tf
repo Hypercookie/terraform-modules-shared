@@ -1,16 +1,19 @@
 output "resources_by_stage" {
   description = "Nested map of resources grouped by stage"
   value = {
-    for pair, mod in module.base-resources :
-    local.pairs_map[pair].stage => {
-      for inner_pair, inner_mod in module.base-resources :
-      local.pairs_map[inner_pair].name => {
-        context = inner_mod.context
+    for stage in distinct([
+      for pair in keys(module.base-resources) : local.pairs_map[pair].stage
+    ]) :
+    stage => {
+      for pair, mod in module.base-resources :
+      local.pairs_map[pair].name => {
+        context = mod.context
       }
-      if local.pairs_map[inner_pair].stage == local.pairs_map[pair].stage
+      if local.pairs_map[pair].stage == stage
     }
   }
 }
+
 
 output "resources" {
   description = "Flat map of all resources by pair key (stage-resource)"
