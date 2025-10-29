@@ -15,7 +15,7 @@ resource "inwx_nameserver_record" "ipv6_entries" {
 }
 
 resource "time_sleep" "wait_30_seconds" {
-  count = var.wait_for_inwx_entries ? 0 : 1
+  count = var.wait_for_inwx_entries ? 1 : 0
   depends_on = [inwx_nameserver_record.ipv4_entries[0]]
   create_duration = "30s"
 
