@@ -14,7 +14,7 @@ resource "inwx_nameserver_record" "ipv6_entries" {
   type    = "AAAA"
 }
 
-resource "dns-validation_dns_address_validation" "valid_v4" {
+resource "dns_address_validation" "valid_v4" {
   for_each = var.create_inwx_entries ? toset(local.fqdns) : toset([])
   name = each.value
   addresses = [var.endpoint_ipv4]
