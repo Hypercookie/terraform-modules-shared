@@ -14,8 +14,9 @@ resource "inwx_nameserver_record" "ipv6_entries" {
   type    = "AAAA"
 }
 
-resource "dns_address_validation" "valid_v4" {
-  for_each = var.create_inwx_entries ? toset(local.fqdns) : toset([])
-  name = each.value
-  addresses = [var.endpoint_ipv4]
+resource "time_sleep" "wait_30_seconds" {
+  count = var.wait_for_inwx_entries ? 0 : 1
+  depends_on = [inwx_nameserver_record.ipv4_entries[0]]
+  create_duration = "30s"
+
 }
