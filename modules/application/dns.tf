@@ -14,13 +14,8 @@ resource "inwx_nameserver_record" "ipv6_entries" {
   type    = "AAAA"
 }
 
-data "external" "wait_for_dns" {
-  depends_on = [inwx_nameserver_record.ipv4_entries[0]]
-  program = ["bash", "${path.module}/scripts/wait-for-dns.sh"]
-  for_each = var.wait_for_inwx_entries ? toset(local.fqdns) : toset([])
-  query = {
-    fqdn         = each.value
-    expected_ipv4 = var.endpoint_ipv4
-    expected_ipv6 = var.ipv6_support ? var.endpoint_ipv6 : ""
-  }
+resource "dns_address_validation" "valid_v4" {
+  for_each = var.create_inwx_entries ? toset(local.fqdns) : toset([])
+  name = each.value
+  addresses = [var.endpoint_ipv4]
 }
