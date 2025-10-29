@@ -14,7 +14,7 @@ resource "portainer_stack" "application_depending" {
   method               = "string"
   name                 = module.name.id
   stack_file_content   = var.docker_compose_content
-  depends_on = [dns-validation_dns_address_validation.valid_v4]
+  depends_on = [dns_address_validation.valid_v4]
 }
 
 resource "portainer_stack" "application_immediate" {
