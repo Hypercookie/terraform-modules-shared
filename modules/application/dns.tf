@@ -15,7 +15,7 @@ resource "inwx_nameserver_record" "ipv6_entries" {
 }
 
 data "external" "wait_for_dns" {
-  depends_on = [inwx_nameserver_record.ipv4_entries, inwx_nameserver_record.ipv6_entries]
+  depends_on = [inwx_nameserver_record.ipv4_entries[0]]
   program = ["bash", "${path.module}/scripts/wait-for-dns.sh"]
   for_each = var.wait_for_inwx_entries ? toset(local.fqdns) : toset([])
   query = {
