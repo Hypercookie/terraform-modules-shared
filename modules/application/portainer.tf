@@ -11,6 +11,7 @@ data "template_file" "compose" {
   vars = {
     stage      = var.stage
     hosts_yaml = local.hosts_yaml
+    base_domain = local.base_domain
   }
 }
 

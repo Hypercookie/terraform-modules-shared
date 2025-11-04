@@ -15,6 +15,7 @@ variable "stage" {
 
 variable "docker_compose_content" {
   type = string
+  default = ""
 }
 
 variable "docker_compose_template" {
@@ -50,7 +51,6 @@ variable "base_domain" {
 variable "subdomains" {
   type = list(string)
 }
-
 variable "create_inwx_entries" {
   type    = bool
   default = true
@@ -66,4 +66,9 @@ variable "deployment_mode" {
 variable "endpoint_id" {
   type    = number
   default = 1
+}
+
+variable "extra_subdomains" {
+  type = list(string)
+  default = []
 }
