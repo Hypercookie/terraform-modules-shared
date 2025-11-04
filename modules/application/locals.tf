@@ -7,7 +7,7 @@ locals {
     )
   ]
   base_domain = var.stage != "" ? "${var.stage}.${var.base_domain}" : var.base_domain
-  hosts_yaml = yamlencode(join(" || ", [for h in local.fqdns : format("Host(`%s`)", h)]))
+  hosts_yaml = join(" || ", [for h in local.fqdns : format("Host(`%s`)", h)])
 }
 output "hosts" {
   value = local.fqdns
