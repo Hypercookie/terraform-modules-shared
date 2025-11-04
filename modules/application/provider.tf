@@ -5,7 +5,7 @@ terraform {
       version = "1.6.1"
     }
     portainer = {
-      source = "portainer/portainer"
+      source  = "portainer/portainer"
       version = "1.15.0"
     }
     external = {

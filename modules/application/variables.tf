@@ -1,3 +1,4 @@
+
 variable "application_name" {
   type = string
 }
@@ -8,8 +9,17 @@ variable "application_name_context" {
   })
 }
 
+variable "stage" {
+  type = string
+}
+
 variable "docker_compose_content" {
   type = string
+}
+
+variable "docker_compose_template" {
+  type    = string
+  default = ""
 }
 
 variable "endpoint_ipv4" {
@@ -20,17 +30,17 @@ variable "endpoint_ipv6" {
 }
 
 variable "inwx_provider" {
-  type = any
+  type    = any
   default = null
 }
 
 variable "ipv6_support" {
-type = bool
+  type    = bool
   default = true
 }
 
 variable "portainer_provider" {
-  type = any
+  type    = any
   default = null
 }
 
@@ -42,18 +52,18 @@ variable "subdomains" {
 }
 
 variable "create_inwx_entries" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "wait_for_inwx_entries" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "deployment_mode" {
-  type = string
+  type    = string
   default = "swarm"
 }
 variable "endpoint_id" {
-  type = number
+  type    = number
   default = 1
 }
