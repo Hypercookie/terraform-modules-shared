@@ -1,5 +1,6 @@
 locals {
-  concat_subdomains = concat(local.subdomains, var.extra_subdomains)
+  concat_subdomains = concat(local.subdomains, local.extra_subdomains)
+  extra_subdomains = var.stage != "" ? [for s in var.extra_subdomains : join(".", [s,var.stage])] : var.extra_subdomains
   subdomains = var.stage != "" ? [for s in var.subdomains : join(".", [s,var.stage])] : var.subdomains
   fqdns = [
     for x in var.subdomains : join(".",
